@@ -8,7 +8,7 @@ class Game
 
   def generate_sequence
     string = ''
-    6.times do
+    4.times do
       string += %w[r o y g b p].sample
     end
     string
@@ -17,7 +17,7 @@ class Game
   def read_user_sequence
     puts sequence_prompt
     sequence = gets.chomp.downcaseSS
-    return sequence if sequence.match(/[r,o,y,g,b,p]{6}/).to_s == sequence
+    return sequence if sequence.match(/[r,o,y,g,b,p]{4}/).to_s == sequence
 
     puts invalid_sequence_prompt
     read_user_sequence
