@@ -6,9 +6,17 @@ require_relative 'display'
 class Game
   include Display
 
+  def generate_sequence
+    string = ''
+    6.times do
+      string += %w[r o y g b p].sample
+    end
+    string
+  end
+
   def read_user_sequence
     puts sequence_prompt
-    sequence = gets.chomp.downcase
+    sequence = gets.chomp.downcaseSS
     return sequence if sequence.match(/[r,o,y,g,b,p]{6}/).to_s == sequence
 
     puts invalid_sequence_prompt
@@ -17,4 +25,4 @@ class Game
 end
 
 game = Game.new
-puts game.read_user_sequence
+puts game.generate_sequence
