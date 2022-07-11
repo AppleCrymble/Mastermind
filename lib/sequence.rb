@@ -31,10 +31,13 @@ class Sequence
   def compare_to(guess)
     clue = ''
     available_pegs = @sequence.split('')
+    p available_pegs
     clue += handle_exact_matches(@sequence, guess, available_pegs)
+    p available_pegs
     clue += handle_partial_matches(guess, available_pegs)
+    p available_pegs
     clue += INCORRECT until clue.count("\u25CF") == 4
-    guess.to_s + clue
+    clue
   end
 
   private
@@ -61,7 +64,3 @@ class Sequence
     partial_clue
   end
 end
-
-a = Sequence.new("ppoo")
-b = Sequence.new("ooop")
-puts a.compare_to(b)
