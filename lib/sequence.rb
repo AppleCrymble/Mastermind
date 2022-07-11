@@ -31,10 +31,11 @@ class Sequence
   def compare_to(guess)
     clue = ''
     available_pegs = @sequence.split('')
+    guess_pegs = guess.sequence.split('')
     p available_pegs
-    clue += handle_exact_matches(@sequence, guess, available_pegs)
+    clue += handle_exact_matches(@sequence, guess, guess_pegs, available_pegs)
     p available_pegs
-    clue += handle_partial_matches(guess, available_pegs)
+    clue += handle_partial_matches(guess_pegs, available_pegs)
     p available_pegs
     clue += INCORRECT until clue.count("\u25CF") == 4
     clue
@@ -42,20 +43,22 @@ class Sequence
 
   private
 
-  def handle_exact_matches(answer, guess, available_pegs)
+  def handle_exact_matches(answer, guess, guess_pegs, available_pegs)
     partial_clue = ''
     guess.sequence.split('').each_with_index do |peg, index|
       next unless answer[index] == peg
 
       partial_clue += CORRECT
       available_pegs.delete_at(available_pegs.index(peg))
+      guess_pegs.delete_at(guess_pegs.index(peg))
+      peg
     end
     partial_clue
   end
 
-  def handle_partial_matches(guess, available_pegs)
+  def handle_partial_matches(guess_pegs, available_pegs)
     partial_clue = ''
-    guess.sequence.split('').each do |peg|
+    guess_pegs.each do |peg|
       next unless available_pegs.include? peg
 
       partial_clue += MISPLACED

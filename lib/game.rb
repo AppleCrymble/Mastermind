@@ -46,5 +46,3 @@ class Game
     read_user_sequence
   end
 end
-
-game = Game.new
