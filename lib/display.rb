@@ -10,6 +10,14 @@ module Display
     'Invalid sequence.'
   end
 
+  def clue_prompt(guess)
+    "The computer has guessed #{guess}.\nEnter your clue (c/m): "
+  end
+
+  def invalid_clue_prompt
+    'Invalid clue.'
+  end
+
   def player_won_message
     'Congratulations! You won!'
   end

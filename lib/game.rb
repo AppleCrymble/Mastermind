@@ -45,4 +45,17 @@ class Game
     puts invalid_sequence_prompt
     read_user_sequence
   end
+
+  def computer_guess_loop
+
+  end
+
+  def read_user_clue(guess)
+    puts clue_prompt(guess)
+    clue = gets.chomp.downcase
+    return clue if clue.match(/[c,m]{0,4}/)
+
+    puts invalid_clue_prompt
+    read_user_clue
+  end
 end
